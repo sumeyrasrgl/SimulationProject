@@ -22,7 +22,6 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-       // Utilities.utilities.LockMouse();
     }
 
     private void LateUpdate()
@@ -33,9 +32,7 @@ public class CameraController : MonoBehaviour
         {
             SmoothMovement(target.position + (-target.forward * followDistance) +
                 (target.up * upOffset) + (target.right * rightOffset));
-            // new Vector3(target.position.x + rightOffset, 
-            //            target.position.y + upOffset, 
-            //            target.position.z-followDistance);
+
             SmoothRotation(target.rotation * Quaternion.Euler(xRotation, yRotation, 0));
         }
         else
