@@ -34,7 +34,8 @@ public class PlayerMovement : MonoBehaviour
         {
             multiplier = 15;
         }
-        transform.Translate(Input.GetAxis("Vertical") * Vector3.right * multiplier * Time.deltaTime);
+        transform.Translate(Input.GetAxis("Horizontal") * Vector3.right * multiplier * Time.deltaTime);
+
 
     }
     private void MoveLeftRight()
@@ -44,7 +45,8 @@ public class PlayerMovement : MonoBehaviour
         {
             multiplier = 15;
         }
-        transform.Translate(Input.GetAxis("Horizontal") * -Vector3.forward * multiplier * Time.deltaTime);
+        transform.Translate(Input.GetAxis("Vertical") * Vector3.forward * multiplier * Time.deltaTime);
+
 
     }
 
