@@ -15,11 +15,6 @@ public class DoorController : MonoBehaviour
             
     }
 
-    public void MoveDoor()
-    {
-        isOpen = !isOpen; 
-        
-    }
     private void Update()
     {
         OpenDoor();
@@ -53,8 +48,6 @@ public class DoorController : MonoBehaviour
                 isOpen = true;
  
             }
-          
-
         }
     }
 
