@@ -4,47 +4,60 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float ver, hor, mouseX, mouseY;
-    public Transform mainCamera;
-    public float speed;
-    Rigidbody rb;
+    [SerializeField] float speed;
+    private float ver, hor, mouseY, mouseX;
+    private Transform mainCamera;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         mainCamera = Camera.main.transform;
-        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        hor = Input.GetAxis("Horizontal");
         ver = Input.GetAxis("Vertical");
-        mouseX = Input.GetAxis("Mouse X");
+        hor = Input.GetAxis("Horizontal");
         mouseY = Input.GetAxis("Mouse Y");
-
-        Movement();
+        mouseX = Input.GetAxis("Mouse X");
+        MoveForwardBack();
+        MoveLeftRight();
         TurnLeftRight();
         LookUpDown();
 
-
     }
 
-    public void Movement()
+
+    private void MoveForwardBack()
     {
-        
-        Vector3 hizimiz = new Vector3(hor, 0.0f, ver);
-        rb.AddForce(hizimiz * speed);
-       
+        float multiplier = 10;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            multiplier = 15;
+        }
+        transform.Translate(Input.GetAxis("Vertical") * Vector3.right * multiplier * Time.deltaTime);
+
+    }
+    private void MoveLeftRight()
+    {
+        float multiplier = 10;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            multiplier = 15;
+        }
+        transform.Translate(Input.GetAxis("Horizontal") * -Vector3.forward * multiplier * Time.deltaTime);
+
     }
 
-    public void TurnLeftRight()
+    private void TurnLeftRight()
     {
         transform.rotation *= Quaternion.Euler(0, mouseX * speed, 0);
     }
-    public void LookUpDown()
+
+    private void LookUpDown()
     {
         mainCamera.GetComponent<CameraController>().SetLookUpDown(-mouseY);
     }
+
+
+
 }
