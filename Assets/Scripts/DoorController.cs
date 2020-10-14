@@ -10,7 +10,8 @@ public class DoorController : MonoBehaviour
 
     public void MoveDoor()
     {
-        isOpen = !isOpen;
+        isOpen = !isOpen; 
+        
     }
     private void Update()
     {
@@ -18,11 +19,26 @@ public class DoorController : MonoBehaviour
         {
             Quaternion doorRotation1 = Quaternion.Euler(0, openedRotation, 0);
             transform.localRotation = Quaternion.Slerp(transform.rotation, doorRotation1, speed * Time.deltaTime);
-        }
-       /* else
+        }else if (isOpen==false)
         {
             Quaternion doorRotation2 = Quaternion.Euler(0, closedRotation, 0);
             transform.localRotation = Quaternion.Slerp(transform.rotation, doorRotation2, speed * Time.deltaTime);
-        }*/
+        }
+        
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (isOpen==false)
+            {
+                isOpen = true;
+            }else if (isOpen)
+            {
+                isOpen = false;
+            }
+           
+        }
+    }
+
 }
