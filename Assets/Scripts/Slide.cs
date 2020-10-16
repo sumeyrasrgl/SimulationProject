@@ -6,13 +6,13 @@ public class Slide : MonoBehaviour
 {
     public float t = 0f;
     public Spline spline;
-    DoorController doorController;
     public GameObject door;
-    Transform transformDoor;
     public GameObject npcPlayer;
     Animator animator;
     private GameObject target;
     public GameObject table;
+    public GameObject hand;
+    public GameObject cube;
 
 
 
@@ -21,14 +21,10 @@ public class Slide : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         t = 0;
-        
-
-
     }
 
     public void LookUpTarget()
     {
-  
         target = table.gameObject;
         Vector3 direction = target.transform.position - transform.position;
         Quaternion targetRotation = Quaternion.LookRotation(direction, transform.up);
@@ -41,7 +37,7 @@ public class Slide : MonoBehaviour
             LookUpTarget();
         }
     }
-    // Update is called once per frame
+    
     void Update()
     {
         
@@ -65,6 +61,9 @@ public class Slide : MonoBehaviour
         if (t>1)
         {
             animator.SetBool("cube", true);
+            cube.transform.parent = hand.transform;
+            cube.transform.localPosition = Vector3.zero;
+            cube.transform.localRotation = Quaternion.identity;
         }
         //sürekli başa sar
         /*if (t>1)
