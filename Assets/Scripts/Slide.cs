@@ -11,17 +11,36 @@ public class Slide : MonoBehaviour
     Transform transformDoor;
     public GameObject npcPlayer;
     Animator animator;
-    
+    private GameObject target;
+    public GameObject table;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         t = 0;
-
         
+
+
     }
 
+    public void LookUpTarget()
+    {
+  
+        target = table.gameObject;
+        Vector3 direction = target.transform.position - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(direction, transform.up);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.3f);
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Table"))
+        {
+            LookUpTarget();
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -30,10 +49,8 @@ public class Slide : MonoBehaviour
         {
 
             animator.SetBool("walk", true);
+            
             NpcMovement();
-          
-
-
 
         }
 
@@ -45,6 +62,10 @@ public class Slide : MonoBehaviour
         this.transform.position = spline.getSplinePosition(t);
         
         t += Time.deltaTime / 10f;
+        if (t>1)
+        {
+            animator.SetBool("cube", true);
+        }
         //sürekli başa sar
         /*if (t>1)
         {

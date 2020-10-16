@@ -70,4 +70,6 @@ public class Spline : MonoBehaviour
             return Vector3.zero;
         }
     }
+
+    
 }
