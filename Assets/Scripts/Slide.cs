@@ -15,8 +15,6 @@ public class Slide : MonoBehaviour
     public GameObject cube;
 
 
-
-    // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -43,13 +41,9 @@ public class Slide : MonoBehaviour
         
         if (door.GetComponent<DoorController>().isOpen==true)
         {
-
-            animator.SetBool("walk", true);
-            
+            animator.SetBool("walk", true); 
             NpcMovement();
-
         }
-
 
     }
 
@@ -65,7 +59,6 @@ public class Slide : MonoBehaviour
             cube.transform.localPosition = Vector3.zero;
             cube.transform.localRotation = Quaternion.identity;
         }
-        //sürekli başa sar
         /*if (t>1)
         {
             t = 0;

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-
     public bool isOpen;
     public float openedRotation,closedRotation,speed1,speed2;
     public GameObject Door2;
     Transform door;
+
     void Start()
     {
          door = Door2.GetComponent<Transform>();

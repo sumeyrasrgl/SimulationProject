@@ -8,8 +8,6 @@ public class Spline : MonoBehaviour
     public GameObject rendererPrefab;
 
     List<PiecewiseCubic> pieces = new List<PiecewiseCubic>();
-
-    GameObject prevR;
     public LineRenderer renderer;
 
 

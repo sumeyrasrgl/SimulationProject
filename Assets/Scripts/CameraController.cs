@@ -16,13 +16,7 @@ public class CameraController : MonoBehaviour
     public float turnAroundModeFollowDistance = 30f;
     public float turnAroundModeUpOffset = 21f;
     public float turnAroundModeRightOffset = 0;
-
-
     private Vector3 offset;
-
-    private void Start()
-    {
-    }
 
     private void LateUpdate()
     {
