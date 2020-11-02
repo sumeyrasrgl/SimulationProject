@@ -47,18 +47,31 @@ public class Slide : MonoBehaviour
 
     }
 
+    private IEnumerator cubeCoroutine()
+    {
+        yield return new WaitForSeconds(1.3f);
+        cube.transform.parent = hand.transform;
+        cube.transform.localPosition = Vector3.zero;
+        cube.transform.localRotation = Quaternion.identity;
+    }
+
     public void NpcMovement()
     {
         this.transform.position = spline.getSplinePosition(t);
+        Vector3 newPos = spline.getSplinePosition(t + 0.00001f);
+        this.transform.LookAt(newPos);
         
         t += Time.deltaTime / 10f;
         if (t>1)
         {
+            
+            
             animator.SetBool("cube", true);
-            cube.transform.parent = hand.transform;
-            cube.transform.localPosition = Vector3.zero;
-            cube.transform.localRotation = Quaternion.identity;
+            StartCoroutine(cubeCoroutine());
+            
+            
         }
+        
         /*if (t>1)
         {
             t = 0;
